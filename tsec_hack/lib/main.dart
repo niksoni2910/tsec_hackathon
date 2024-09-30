@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tsec_hack/profile_page.dart';
+import 'package:tsec_hack/screens/bnav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +19,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
       ),
-      home: UserProfile(),
+      home: const BottomNavBar(),
     );
   }
 }
-
