@@ -33,7 +33,7 @@ class TransactionPage extends StatelessWidget {
         ),
         title: Text('Transaction Details'),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 68, 138, 255),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Container(
         decoration: BoxDecoration(
