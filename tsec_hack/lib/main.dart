@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:tsec_hack/screens/bnav.dart';
 import 'package:tsec_hack/screens/recent_alert_list.dart';
 import 'package:tsec_hack/screens/transaction_page.dart';
+=======
+import 'package:tsec_hack/profile_page.dart';
+import 'package:tsec_hack/screens/bnav.dart';
+>>>>>>> 32bba3edb2cb5b64683b2a641c2337758c2d70c8
 
 void main() {
   runApp(const MyApp());
@@ -20,18 +25,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
       ),
-    //   home: TransactionPage(
-    //   payeeName: 'Alice',
-    //   payerName: 'Bob',
-    //   amount: 100.0,
-    //   date: '2024-09-30',
-    //   time: '12:00 PM',
-    //   payerBankAccountNumber: '1234 5678 9012 3456',
-    //   payeeBankAccountNumber: '6543 2109 8765 4321',
-    //   category: 'green',
-    // ),
-    home: BottomNavBar(),
+      home: const BottomNavBar(),
     );
   }
 }
-

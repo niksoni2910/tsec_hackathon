@@ -41,10 +41,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _buildMetricCard(
-            'Total Transactions', '1,250', Icons.swap_horiz, Colors.blue),
-        _buildMetricCard('Flagged Activities', '12', Icons.flag, Colors.red),
+            'Total Transactions', '1,250', Icons.swap_horiz, const Color(0xFF2196F3)),
+        _buildMetricCard('Flagged Activities', '12', Icons.flag, const Color(0xFFF44336)),
         _buildMetricCard(
-            'High-Risk Transactions', '3', Icons.warning, Colors.orange),
+            'High-Risk Transactions', '3', Icons.warning, const Color(0xFFFF9800)),
       ],
     );
   }
