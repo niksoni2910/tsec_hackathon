@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tsec_hack/profile_page.dart';
 import 'package:tsec_hack/screens/bnav.dart';
 
 void main() {
