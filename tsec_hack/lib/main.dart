@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tsec_hack/profile_page.dart';
+import 'package:tsec_hack/transaction_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,16 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
       ),
-      home: UserProfile(),
+      home: TransactionPage(
+      payeeName: 'Alice',
+      payerName: 'Bob',
+      amount: 100.0,
+      date: '2024-09-30',
+      time: '12:00 PM',
+      payerBankAccountNumber: '1234 5678 9012 3456',
+      payeeBankAccountNumber: '6543 2109 8765 4321',
+      category: 'green',
+    ),
     );
   }
 }
