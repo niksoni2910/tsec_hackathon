@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:tsec_hack/screens/transaction_page.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -168,6 +170,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   // Reusable widget for a single alert tile
   Widget _buildAlertTile(
       String title, String description, DateTime date, Color color) {
+        String formattedDate = DateFormat('MMM d, yyyy').format(date);
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: color,
@@ -177,8 +180,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      subtitle: Text("$description $date"),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      subtitle: Text("$description $formattedDate"),
+      trailing: IconButton(icon:Icon(Icons.arrow_forward_ios), onPressed:()=>{ Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TransactionPage(
+                    payeeName: 'Alice',
+                    payerName: 'Bob',
+                    amount: 100.0,
+                    date: '2024-09-30',
+                    time: '12:00 PM',
+                    payerBankAccountNumber: '1234 5678 9012 3456',
+                    payeeBankAccountNumber: '6543 2109 8765 4321',
+                    category: description == "High Risk" ? "red": description == "Low Risk"?"yellow":"green",
+                  ),
+                ),)}),
     );
   }
 }

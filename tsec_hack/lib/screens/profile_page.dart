@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:tsec_hack/screens/recent_alert_list.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
+  final String userName;
+  final double totalAmount;
+
+  const UserProfile(
+      {super.key, required this.userName, required this.totalAmount});
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
   // Mock data for the user's transactions
-  final String userName = "John Doe";
+
   final int totalTransactions = 150;
-  final double totalAmount = 25000.00;
+
   final int nonFraudTransactions = 140;
+
   final int fraudTransactions = 10;
 
   @override
@@ -79,7 +91,7 @@ class UserProfile extends StatelessWidget {
             _buildCardInfo(
               icon: Icons.attach_money,
               title: 'Total Amount',
-              value: '\$${totalAmount.toStringAsFixed(2)}',
+              value: '\$${widget.totalAmount.toStringAsFixed(2)}',
               color: Colors.green,
             ),
             _buildCardInfo(
@@ -103,12 +115,12 @@ class UserProfile extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Action for viewing all transactions
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => AllTransactionsPage(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecentAlertsPage(),
+                    ),
+                  );
                 },
                 child: Text(
                   'View All Transactions',
@@ -141,7 +153,7 @@ class UserProfile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                userName,
+                widget.userName,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -190,30 +202,6 @@ class UserProfile extends StatelessWidget {
       ),
     );
   }
-  // Widget _buildTableCell(String label, Color color) {
-  //   return Container(
-  //     padding: EdgeInsets.all(12),
-  //     color: color.withOpacity(0.3),
-  //     child: Center(
-  //       child: Text(
-  //         label,
-  //         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Widget _buildValueCell(String value) {
-  //   return Container(
-  //     padding: EdgeInsets.all(12),
-  //     child: Center(
-  //       child: Text(
-  //         value,
-  //         style: TextStyle(fontSize: 18),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
 
 class TransactionBar extends StatelessWidget {
