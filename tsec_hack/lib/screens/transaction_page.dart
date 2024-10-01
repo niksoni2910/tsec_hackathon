@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tsec_hack/screens/profile_page.dart';
 
-class TransactionPage extends StatelessWidget {
+class TransactionPage extends StatefulWidget {
   final String payeeName;
   final String payerName;
   final double amount;
@@ -21,6 +22,11 @@ class TransactionPage extends StatelessWidget {
     required this.category,
   });
 
+  @override
+  State<TransactionPage> createState() => _TransactionPageState();
+}
+
+class _TransactionPageState extends State<TransactionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,16 +69,52 @@ class TransactionPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildCategoryIndicator(category),
+            _buildCategoryIndicator(widget.category),
             SizedBox(height: 20),
-            _buildCardInfoRow(icon: Icons.person, title: 'Payee Name', value: payeeName, color: Colors.orange),
-            _buildCardInfoRow(icon: Icons.person, title: 'Payer Name', value: payerName, color: Colors.blue),
-            _buildCardInfoRow(icon: Icons.attach_money, title: 'Amount', value: '\$${amount.toStringAsFixed(2)}', color: Colors.green),
-            _buildCardInfoRow(icon: Icons.date_range, title: 'Date', value: date, color: Colors.purple),
-            _buildCardInfoRow(icon: Icons.access_time, title: 'Time', value: time, color: Colors.indigo),
-            _buildCardInfoRow(icon: Icons.account_balance, title: 'Payer Bank Account', value: payerBankAccountNumber, color: Colors.teal),
-            _buildCardInfoRow(icon: Icons.account_balance_wallet, title: 'Payee Bank Account', value: payeeBankAccountNumber, color: Colors.cyan),
-            
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserProfile(userName: widget.payeeName,totalAmount: widget.amount)));
+              },
+              child: _buildCardInfoRow(
+                  icon: Icons.person,
+                  title: 'Payee Name',
+                  value: widget.payeeName,
+                  color: Colors.orange),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserProfile(userName: widget.payerName,totalAmount: widget.amount)));
+              },
+            child:_buildCardInfoRow(
+                icon: Icons.person,
+                title: 'Payer Name',
+                value: widget.payerName,
+                color: Colors.blue)),
+            _buildCardInfoRow(
+                icon: Icons.attach_money,
+                title: 'Amount',
+                value: '\$${widget.amount.toStringAsFixed(2)}',
+                color: Colors.green),
+            _buildCardInfoRow(
+                icon: Icons.date_range,
+                title: 'Date',
+                value: widget.date,
+                color: Colors.purple),
+            _buildCardInfoRow(
+                icon: Icons.access_time,
+                title: 'Time',
+                value: widget.time,
+                color: Colors.indigo),
+            _buildCardInfoRow(
+                icon: Icons.account_balance,
+                title: 'Payer Bank Account',
+                value: widget.payerBankAccountNumber,
+                color: Colors.teal),
+            _buildCardInfoRow(
+                icon: Icons.account_balance_wallet,
+                title: 'Payee Bank Account',
+                value: widget.payeeBankAccountNumber,
+                color: Colors.cyan),
           ],
         ),
       ),
@@ -133,7 +175,7 @@ class TransactionPage extends StatelessWidget {
         categoryLabel = 'High Risk';
         break;
       case 'yellow':
-        categoryColor = Colors.yellow;
+        categoryColor = const Color.fromARGB(255, 235, 219, 74);
         categoryLabel = 'Medium Risk';
         break;
       case 'green':
@@ -149,7 +191,6 @@ class TransactionPage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: categoryColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: categoryColor,
@@ -158,10 +199,12 @@ class TransactionPage extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
-            Icons.warning,
-            color: categoryColor,
-          ),
+          category == "green"
+              ? Icon(Icons.arrow_right)
+              : Icon(
+                  Icons.warning,
+                  color: categoryColor,
+                ),
           SizedBox(width: 10),
           Text(
             'Category: $categoryLabel',
