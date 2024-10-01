@@ -25,7 +25,7 @@ const Stats = () => {
   return (
     <div className={sideStyles.container}>
         <div className={sideStyles.sidebar}>
-            <p className={sideStyles.companyname}>Company Name</p>
+            <p className={sideStyles.companyname}>EagleEye</p>
             <div className={sideStyles.sidebtn} onClick={gotohome}>Home</div>
             <div className={sideStyles.sidebtn} onClick={gotosdashboard}>Stats</div>
         </div>
